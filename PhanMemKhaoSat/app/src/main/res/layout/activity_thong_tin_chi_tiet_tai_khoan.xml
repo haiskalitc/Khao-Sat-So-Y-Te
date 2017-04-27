@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_thong_tin_tai_khoan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.cscom_pc.phanmemkhaosat.ChiTietDotKhaoSat">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frmThongTinTaiKhoan">
+    </FrameLayout>
+    <LinearLayout
+        android:layout_below="@id/frmThongTinTaiKhoan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingLeft="24dp">
+            <ImageView
+                android:id="@+id/iconhoten"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_accountt"
+                android:layout_centerVertical="true"
+                />
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iconhoten"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:text="Họ tên : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyễn Minh Hải"
+                    android:editable="false"
+                    android:id="@+id/txtTenNguoiDung"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingLeft="24dp">
+            <ImageView
+                android:id="@+id/iconsdt"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/phone"
+                android:layout_centerVertical="true"
+                />
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iconsdt"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:text="Số điện thoại : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0945475684"
+                    android:editable="false"
+                    android:id="@+id/txtSoDienThoaiNguoiDung"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingLeft="24dp">
+            <ImageView
+                android:id="@+id/iconemail"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/mail"
+                android:layout_centerVertical="true"
+                />
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iconemail"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:text="Email : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="hainguyen9sk@gmail.com"
+                    android:editable="false"
+                    android:id="@+id/txtEmailNguoiDung"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingLeft="24dp">
+            <ImageView
+                android:id="@+id/icondonvi"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                />
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/icondonvi"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:text="Đơn vị : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Phòng Marketing bẹnh viện 112"
+                    android:editable="false"
+                    android:id="@+id/txtDonViNguoiDugn"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingLeft="24dp">
+            <ImageView
+                android:id="@+id/iconvaitro"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                />
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iconvaitro"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:text="Vai trò : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:id="@+id/txtVaiTroNguoiDung"
+                    android:hint="(Trống)"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+<RelativeLayout
+    android:background="#ECECEC"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginLeft="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_pas"/>
+        <TextView
+            android:layout_marginLeft="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đổi mật khẩu"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btnDoiMatKhau"
+        android:background="@null"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/btnnext"
+        android:layout_marginRight="12dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>
+</RelativeLayout>

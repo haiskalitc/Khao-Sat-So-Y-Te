@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#32AFC8"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:paddingLeft="10dp"
+    android:paddingBottom="5dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp">
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/btndelete"
+        android:background="@null"/>
+    <TextView
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Chỉnh sửa"
+        android:id="@+id/txvCancel"
+        android:textColor="@android:color/white"
+        android:gravity="center_vertical"
+        android:layout_centerInParent="true"/>
+    <ImageButton
+        android:layout_alignParentRight="true"
+        android:id="@+id/btnSave"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/btnsave"
+        android:background="@null"/>
+</RelativeLayout>

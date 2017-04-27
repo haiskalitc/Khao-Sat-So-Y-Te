@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="108dp"
+    >
+
+    <FrameLayout
+        android:layout_marginLeft="-30dp"
+        android:layout_width="108dp"
+        android:layout_height="match_parent"
+        android:id="@+id/imgTime"
+        android:gravity="center"
+        android:background="@drawable/item_list"
+        >
+        <ImageButton
+            android:layout_gravity="center"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icontime"
+            android:layout_centerVertical="true"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="-30dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/imgTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtTenDotKhaoSat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đợt khảo sát 1"
+            android:textSize="10pt"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginTop="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtNgayDenNgayDi"
+            android:text="05/11/1995 đến 05/11/2017"/>
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bệnh viện : "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="113"
+                android:id="@+id/txtBenhVien"/>
+        </LinearLayout>
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btnItemNext"
+        android:layout_width="10dp"
+        android:layout_height="18dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/btnnext"
+        android:layout_marginRight="12dp"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>
