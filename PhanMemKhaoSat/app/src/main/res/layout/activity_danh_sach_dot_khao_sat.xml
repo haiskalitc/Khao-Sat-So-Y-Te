@@ -64,16 +64,19 @@
         android:layout_gravity="start"
         android:background="@android:color/white">
         <LinearLayout
-            android:paddingTop="150dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@drawable/shadow">
-            <include layout="@layout/header_navigation"></include>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/header_navigation"></include>
+            </FrameLayout>
             <!--MENU Navigation-->
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/lsvMenu"
                 >
             </ListView>

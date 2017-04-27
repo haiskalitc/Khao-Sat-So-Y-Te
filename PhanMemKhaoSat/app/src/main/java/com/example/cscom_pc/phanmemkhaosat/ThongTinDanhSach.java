@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 /**
  * Created by CSCOM-PC on 4/24/2017.
@@ -51,4 +52,5 @@ public class ThongTinDanhSach extends Fragment
         super.onActivityCreated(savedInstanceState);
         Event();
     }
+
 }

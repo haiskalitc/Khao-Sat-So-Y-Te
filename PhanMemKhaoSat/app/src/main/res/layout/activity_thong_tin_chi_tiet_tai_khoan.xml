@@ -18,7 +18,7 @@
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:paddingLeft="24dp">
             <ImageView
                 android:id="@+id/iconhoten"
@@ -44,14 +44,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nguyễn Minh Hải"
-                    android:editable="false"
                     android:id="@+id/txtTenNguoiDung"/>
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:paddingLeft="24dp">
             <ImageView
                 android:id="@+id/iconsdt"
@@ -77,14 +76,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="0945475684"
-                    android:editable="false"
                     android:id="@+id/txtSoDienThoaiNguoiDung"/>
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:paddingLeft="24dp">
             <ImageView
                 android:id="@+id/iconemail"
@@ -110,7 +108,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="hainguyen9sk@gmail.com"
-                    android:editable="false"
                     android:id="@+id/txtEmailNguoiDung"/>
             </LinearLayout>
         </RelativeLayout>
@@ -118,7 +115,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:paddingLeft="24dp">
             <ImageView
                 android:id="@+id/icondonvi"
@@ -144,16 +141,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Phòng Marketing bẹnh viện 112"
-                    android:editable="false"
                     android:id="@+id/txtDonViNguoiDugn"
                     />
             </LinearLayout>
         </RelativeLayout>
 
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:paddingLeft="24dp">
             <ImageView
                 android:id="@+id/iconvaitro"
@@ -177,17 +172,12 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="false"
                     android:id="@+id/txtVaiTroNguoiDung"
                     android:hint="(Trống)"
                     />
             </LinearLayout>
         </RelativeLayout>
-
-
     </LinearLayout>
-
-
 <RelativeLayout
     android:background="#ECECEC"
     android:layout_alignParentBottom="true"

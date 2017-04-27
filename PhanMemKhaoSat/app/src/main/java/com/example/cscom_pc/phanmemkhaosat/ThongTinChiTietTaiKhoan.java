@@ -23,6 +23,7 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_tin_chi_tiet_tai_khoan);
         callFragment(DachSachFragment.getInstance().thongTinTaiKhoan);
+        KhoiTao();
         btnDoiMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,9 +40,6 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-    public void setEdit(boolean bo)
-    {
-    }
     public void DoiMatKhau()
     {
         Intent intent = new Intent(ThongTinChiTietTaiKhoan.this,DoiMatKhau.class);
@@ -55,5 +53,29 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
         txtVaiTro = (EditText) findViewById(R.id.txtVaiTroNguoiDung);
         txtDonVi = (EditText) findViewById(R.id.txtDonViNguoiDugn);
         btnDoiMatKhau = (ImageButton) findViewById(R.id.btnDoiMatKhau);
+
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(DachSachFragment.getInstance().thongTinTaiKhoan.isVisible())
+        {
+            finish();
+        }
+        else
+        {
+            super.onBackPressed();
+
+        }
+    }
+
+    public void SetEdit(boolean fa)
+    {
+        txtTaiKhoan.setEnabled(fa);
+        txtEmail.setEnabled(fa);
+        txtDonVi.setEnabled(fa);
+        txtSoDienThoai.setEnabled(fa);
+        txtVaiTro.setEnabled(fa);
     }
 }

@@ -17,9 +17,9 @@ import android.widget.TextView;
 
 public class SearchDanhSach extends Fragment
 {
-    ImageButton btnSearchR ;
-    EditText txtTiemKiem;
-    TextView txvCancel;
+    public ImageButton btnSearchR ;
+    public EditText txtTiemKiem;
+    public TextView txvCancel;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -66,6 +67,7 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         EventThayDoiNam();
         EventMenuClick();
         LayDanhSachDotKhaoSat();
+
     }
 
     public void LayDanhSachDotKhaoSat() {
@@ -100,6 +102,7 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         }).start();
     }
 
+
     //---------------------
     //Khởi tạo MENU item
     public void KhoiTaoMenu() {
@@ -116,12 +119,14 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (arrMenu.get(i).getId()) {
-                    case 1: {
-                        //Click trang chủ
+                    case 1:
+                    {
+                        drawerLayout.closeDrawers();
                         break;
                     }
                     case 2: {
                         //Click tài khoản
+                        drawerLayout.closeDrawers();
                         Intent intent = new Intent(DanhSachDotKhaoSat.this, ThongTinChiTietTaiKhoan.class);
                         startActivity(intent);
                         break;
@@ -135,10 +140,16 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         });
     }
 
-    //Khởi tạo LIST Item
-    public void KhoiTaoItem()
+    @Override
+    public void onBackPressed()
     {
-
+        if(DachSachFragment.getInstance().thongTinDanhSach.isVisible()) {
+            finish();
+        }
+        else
+        {
+            super.onBackPressed();
+        }
     }
 
     //------------------------------------
@@ -208,6 +219,5 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
 
 }

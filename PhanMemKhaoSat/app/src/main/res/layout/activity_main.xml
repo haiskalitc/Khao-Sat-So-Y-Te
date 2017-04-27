@@ -17,19 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-            <ImageView
-                android:layout_alignParentTop="true"
-                android:id="@+id/logo"
-                android:layout_centerInParent="true"
-                android:layout_width="128sp"
-                android:layout_height="128sp"
-                android:layout_marginTop="32dp"
-                android:src="@drawable/logoo"
-                >
-            </ImageView>
             <RelativeLayout
                 android:layout_centerInParent="true"
-                android:layout_below="@id/logo"
                 android:id="@+id/center"
                 android:layout_marginTop="32dp"
                 android:layout_width="match_parent"
@@ -48,15 +37,7 @@
                         android:textColor="@android:color/white"
                         android:textSize="20sp"
                         />
-                    <TextView
-                        android:layout_marginTop="16dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="BỆNH VIỆN 115"
-                        android:gravity="center_horizontal"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp"
-                        />
+
                     <TextView
                         android:layout_marginTop="16dp"
                         android:layout_marginLeft="32dp"

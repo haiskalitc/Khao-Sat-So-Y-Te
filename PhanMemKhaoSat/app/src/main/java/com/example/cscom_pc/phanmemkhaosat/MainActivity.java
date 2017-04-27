@@ -76,4 +76,15 @@ public class MainActivity extends AppCompatActivity {
             return  false;
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(txtTaiKhoan.getText().length()>0 && txtMatKhau.getText().length() > 0)
+        {
+            txtTaiKhoan.setText("");
+            txtMatKhau.setText("");
+            txtTaiKhoan.setFocusable(true);
+        }
+    }
 }
