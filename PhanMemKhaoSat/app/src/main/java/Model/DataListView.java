@@ -1,4 +1,4 @@
-package com.example.cscom_pc.phanmemkhaosat;
+package Model;
 
 /**
  * Created by CSCOM-PC on 4/25/2017.

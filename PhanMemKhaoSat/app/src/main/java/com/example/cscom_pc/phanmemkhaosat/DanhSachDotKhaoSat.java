@@ -1,44 +1,29 @@
 package com.example.cscom_pc.phanmemkhaosat;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.view.View;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 
-import com.kosalgeek.asynctask.AsyncResponse;
-import com.kosalgeek.asynctask.PostResponseAsyncTask;
-import com.kosalgeek.android.json.JsonConverter;
+import Adapter.DanhSachAdapter;
+import Adapter.MenuAdapter;
+import Model.DataListView;
+import Model.ItemMenu;
 
 
 public class DanhSachDotKhaoSat extends AppCompatActivity {

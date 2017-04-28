@@ -1,7 +1,6 @@
-package com.example.cscom_pc.phanmemkhaosat;
+package Adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.cscom_pc.phanmemkhaosat.R;
+
 import java.util.List;
+
+import Model.ItemMenu;
 
 /**
  * Created by CSCOM-PC on 4/24/2017.

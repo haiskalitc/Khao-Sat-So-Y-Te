@@ -1,58 +1,58 @@
-package com.example.cscom_pc.phanmemkhaosat;
+package Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
+import com.example.cscom_pc.phanmemkhaosat.R;
+
 /**
  * Created by CSCOM-PC on 4/24/2017.
  */
 
-public class ThongTinTaiKhoan extends Fragment
+public class ThongTinDanhSach extends Fragment
 {
-    ImageButton btnEdit;
-    ImageButton btnBack;
-
-    @Nullable
-    @Override
+    Toolbar toolbar;
+    ImageButton btnSearch;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.chitiet_taikhoan,container,false);
-        btnEdit = (ImageButton) view.findViewById(R.id.btnEdit);
-        btnBack = (ImageButton) view.findViewById(R.id.btnBack);
+        View view  = inflater.inflate(R.layout.layout_thongtin,container,false);
+        btnSearch = (ImageButton) view.findViewById(R.id.btnSearch);
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         return  view;
     }
     public void Event()
     {
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
-                getActivity().finish();
+                replaceFragment(DachSachFragment.getInstance().searchDanhSach);
             }
         });
-        btnEdit.setOnClickListener(new View.OnClickListener() {
+        toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //click edit
-                replaceFragment(DachSachFragment.getInstance().editTaiKhoan);
             }
         });
     }
+    public void replaceFragment(Fragment someFragment)
+    {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.tittle, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Event();
     }
-    public void replaceFragment(Fragment someFragment)
-    {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.frmThongTinTaiKhoan, someFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+
 }

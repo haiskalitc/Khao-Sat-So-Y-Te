@@ -1,4 +1,4 @@
-package com.example.cscom_pc.phanmemkhaosat;
+package Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
+import com.example.cscom_pc.phanmemkhaosat.R;
 
 /**
  * Created by CSCOM-PC on 4/24/2017.
