@@ -59,8 +59,11 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 jsonArray = LayDuLieu.getJSONObjectFromURL("http://172.29.14.66:9999/api/DotKhaoSat/DocDanhSachDotKhaoSat");
-                if(jsonArray!=null) {
+
+                if(jsonArray!=null)
+                {
                     arrItem = new ArrayList<DataListView>();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         try {
@@ -81,13 +84,12 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
                 }
                 else
                 {
+
                 }
 
             }
         }).start();
     }
-
-    //---------------------
     //Khởi tạo MENU item
     public void KhoiTaoMenu() {
         arrMenu = new ArrayList<ItemMenu>();
