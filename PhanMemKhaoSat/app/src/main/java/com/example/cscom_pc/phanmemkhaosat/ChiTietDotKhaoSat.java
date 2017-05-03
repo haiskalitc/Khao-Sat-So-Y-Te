@@ -9,7 +9,6 @@ import android.widget.TextView;
 public class ChiTietDotKhaoSat extends AppCompatActivity {
 
     ImageButton btnBack ;
-    ImageButton btnSearch;
     ImageButton btnThongKeTheoCauHoi ;
     ImageButton btnThongKeTheoCauTraLoi;
     ImageButton btnThongKeNguuoiDongY;
@@ -25,7 +24,6 @@ public class ChiTietDotKhaoSat extends AppCompatActivity {
     public void KhoiTao()
     {
         btnBack = (ImageButton) findViewById(R.id.btnBackChiTiet);
-        btnSearch = (ImageButton) findViewById(R.id.btnSeachChiTIet);
         txtTenDotKhaoSat = (TextView) findViewById(R.id.txtTenDotKhaoSat);
         btnThongKeTheoCauHoi = (ImageButton) findViewById(R.id.btnThongKeTheoCauHoi);
         btnThongKeTheoCauTraLoi = (ImageButton) findViewById(R.id.btnThongKeTheoCauTraLoi);

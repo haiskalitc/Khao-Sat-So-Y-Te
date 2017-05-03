@@ -52,9 +52,9 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         EventThayDoiNam();
         EventMenuClick();
         LayDanhSachDotKhaoSat();
+        EventItemClick();
 
     }
-
     public void LayDanhSachDotKhaoSat() {
         new Thread(new Runnable() {
             @Override
@@ -86,7 +86,6 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             }
         }).start();
     }
-
 
     //---------------------
     //Khởi tạo MENU item
@@ -136,8 +135,6 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-    //------------------------------------
     //Khởi tạo control
     public void KhoiTao() {
         btnNext = (ImageButton) findViewById(R.id.btnNext);
@@ -203,6 +200,17 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         transaction.replace(R.id.tittle, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void EventItemClick()
+    {
+        lsvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                //Item Click
+            }
+        });
     }
 
 }

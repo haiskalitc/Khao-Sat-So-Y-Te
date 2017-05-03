@@ -25,14 +25,6 @@
             android:layout_centerInParent="true"
             android:textSize="20sp"
             android:textColor="@android:color/white"/>
-        <ImageButton
-            android:id="@+id/btnSeachChiTIet"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:src="@drawable/btnsearch"
-            android:layout_alignParentRight="true"
-            />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,7 +48,7 @@
                     android:layout_marginLeft="24dp"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:text="Thông kê khảo sát 3 theo cai hỏi"
+                    android:text="Thông kê kết quả khảo sát 3 theo cai hỏi"
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
             <ImageButton
@@ -88,7 +80,7 @@
                     android:layout_marginLeft="24dp"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:text="Đổi mật khẩu"
+                    android:text="Thông kê kết quả đợt khảo sát 3 theo câu trả lời"
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
             <ImageButton
@@ -120,7 +112,7 @@
                     android:layout_marginLeft="24dp"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:text="Đổi mật khẩu"
+                    android:text="Thống kê kết quả khảo sát 3 nhiều người đồng ý nhất"
                     android:layout_gravity="center_vertical" />
             </LinearLayout>
             <ImageButton
