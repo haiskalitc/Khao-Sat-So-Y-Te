@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.cscom_pc.phanmemkhaosat.R;
+import com.example.cscom_pc.phanmemkhaosat.ThongTinChiTietTaiKhoan;
 
 /**
  * Created by CSCOM-PC on 4/24/2017.
@@ -51,6 +52,7 @@ public class EditTaiKhoan extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Event();
+        ((ThongTinChiTietTaiKhoan)getActivity()).SetEdit(true);
     }
     public void showDialogExit()
     {
@@ -85,7 +87,7 @@ public class EditTaiKhoan extends Fragment
             public void onClick(DialogInterface dialog, int which)
             {
                 //Quay lại
-                dialog.cancel();
+                getActivity().finish();
             }
         });
         dialog.setNegativeButton("Có", new DialogInterface.OnClickListener() {

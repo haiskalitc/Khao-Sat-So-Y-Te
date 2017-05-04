@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -22,28 +23,23 @@ public class SearchDanhSach extends Fragment
 {
     public ImageButton btnSearchR ;
     public EditText txtTiemKiem;
-    public TextView txvCancel;
+    public Button btnCancel;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_search,container,false);
         txtTiemKiem = (EditText) view.findViewById(R.id.txtTimKiem);
-        txvCancel = (TextView) view.findViewById(R.id.txvCancel);
+        btnCancel = (Button) view.findViewById(R.id.txvCancel);
         btnSearchR = (ImageButton) view.findViewById(R.id.btnSearchR);
         return  view;
     }
     public  void Event()
     {
         //Hủy tìm kiếm
-        txvCancel.setOnClickListener(new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                txvCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        replaceFragment(DachSachFragment.getInstance().thongTinDanhSach);
-                    }
-                });
+            public void onClick(View v) {
+                replaceFragment(DachSachFragment.getInstance().thongTinDanhSach);
             }
         });
 

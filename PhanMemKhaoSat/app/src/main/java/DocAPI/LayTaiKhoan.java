@@ -1,8 +1,4 @@
-package com.example.cscom_pc.phanmemkhaosat;
-
-import android.os.AsyncTask;
-import android.os.StrictMode;
-import android.util.Log;
+package DocAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,22 +6,20 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URI;
 import java.net.URL;
 
 /**
- * Created by CSCOM-PC on 4/25/2017.
+ * Created by hung-pc on 5/4/2017.
  */
 
-public class LayDuLieu {
-    public static JSONArray getJSONObjectFromURL(String urlString) {
+public class LayTaiKhoan
+{
+    public static JSONObject getJSONObjectFromURL(String urlString,String TaiKhoan,String MatKhau) {
         try {
             HttpURLConnection urlConnection = null;
 
@@ -40,7 +34,7 @@ public class LayDuLieu {
             urlConnection.setRequestMethod("POST");
 
             // thiet lap dang du lieu gui len va nhan ve
-            urlConnection.setRequestProperty("Conten-Type", "application/json");
+            urlConnection.setRequestProperty("Content-Type", "application/json");
 
             // tong thoi gian doc du lieu
             urlConnection.setReadTimeout(10000);
@@ -60,7 +54,8 @@ public class LayDuLieu {
 
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream()));
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("MaDonVi", "0");
+            jsonObject.put("TenDangNhap", TaiKhoan);
+            jsonObject.put("MatKhau",MatKhau);
             bufferedWriter.write(jsonObject.toString());
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -76,7 +71,7 @@ public class LayDuLieu {
             }
             br.close();
 
-            return new JSONArray(sb.toString());
+            return new JSONObject(sb.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -87,4 +82,3 @@ public class LayDuLieu {
         return null;
     }
 }
-

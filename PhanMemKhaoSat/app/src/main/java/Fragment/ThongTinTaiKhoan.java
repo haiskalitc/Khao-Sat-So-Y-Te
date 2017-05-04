@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 
 import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
 import com.example.cscom_pc.phanmemkhaosat.R;
+import com.example.cscom_pc.phanmemkhaosat.ThongTinChiTietTaiKhoan;
 
 /**
  * Created by CSCOM-PC on 4/24/2017.
@@ -50,6 +51,7 @@ public class ThongTinTaiKhoan extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Event();
+        ((ThongTinChiTietTaiKhoan)getActivity()).SetEdit(false);
     }
     public void replaceFragment(Fragment someFragment)
     {

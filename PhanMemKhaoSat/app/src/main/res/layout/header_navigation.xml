@@ -17,9 +17,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nguyễn Minh Hải"
-        android:textSize="16pt"
+        android:textSize="14pt"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
+        android:textColor="@color/blue_btn_bg_pressed_color"
+        android:id="@+id/txtMenuName"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bệnh viện thống nhất nhất nhất nhất nhất nhất nhất"
+        android:textSize="8pt"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/blue_btn_bg_pressed_color"
+        android:id="@+id/txtMenuTenBV"
         />
 </LinearLayout>

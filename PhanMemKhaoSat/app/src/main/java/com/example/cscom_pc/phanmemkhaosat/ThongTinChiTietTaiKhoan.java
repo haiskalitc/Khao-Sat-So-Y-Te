@@ -1,14 +1,19 @@
 package com.example.cscom_pc.phanmemkhaosat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import Model.ThongTinDangNhap;
 
 public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
 
@@ -18,6 +23,7 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
     EditText txtVaiTro;
     EditText txtDonVi;
     ImageButton btnDoiMatKhau;
+    ThongTinDangNhap thongTinDangNhap = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +36,7 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
                 DoiMatKhau();
             }
         });
+        SetEdit(false);
     }
     //Gọi fragment
     public void callFragment(Fragment fragment)
@@ -53,7 +60,13 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
         txtVaiTro = (EditText) findViewById(R.id.txtVaiTroNguoiDung);
         txtDonVi = (EditText) findViewById(R.id.txtDonViNguoiDugn);
         btnDoiMatKhau = (ImageButton) findViewById(R.id.btnDoiMatKhau);
-
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("key");
+        thongTinDangNhap = (ThongTinDangNhap) bundle.getSerializable("thongtin");
+        txtTaiKhoan.setText(thongTinDangNhap.getHoten());
+        txtSoDienThoai.setText(thongTinDangNhap.getSoDienThoai());
+        txtEmail.setText(thongTinDangNhap.getEmail());
+        txtDonVi.setText(thongTinDangNhap.getDonVi());
     }
 
     @Override
@@ -65,8 +78,25 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
         }
         else
         {
-            super.onBackPressed();
-
+            AlertDialog.Builder dialog = new AlertDialog.Builder(ThongTinChiTietTaiKhoan.this);
+            dialog.setTitle("Thông báo!!");
+            dialog.setMessage("Bạn chưa lưu thay đổi ?");
+            dialog.setPositiveButton("Quay Lại", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    //Quay lại
+                    dialog.cancel();
+                }
+            });
+            dialog.setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                  finish();
+                }
+            });
+            dialog.show();
         }
     }
 

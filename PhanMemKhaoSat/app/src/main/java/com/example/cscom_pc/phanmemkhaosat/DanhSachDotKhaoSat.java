@@ -2,6 +2,8 @@ package com.example.cscom_pc.phanmemkhaosat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,33 +18,41 @@ import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import Adapter.DanhSachAdapter;
 import Adapter.MenuAdapter;
+import DocAPI.LayDotKhaoSat;
 import Model.DataListView;
+import Model.DataProvider;
 import Model.ItemMenu;
+import Model.ThongTinDangNhap;
 
 
 public class DanhSachDotKhaoSat extends AppCompatActivity {
     ArrayList<ItemMenu> arrMenu;
     MenuAdapter menuAdapter;
     //-------------------
-    ArrayList<DataListView> arrItem;
+    JSONArray jarrDanhSach = null;
     DanhSachAdapter listAdapter;
     //-------------------
     public static int YearSystem = Calendar.getInstance().get(Calendar.YEAR);
     ImageButton btnNext;
     ImageButton btnPrev;
+    TextView txtMenuName ;
+    TextView txtMenuNameBV;
     TextView tsvNam;
     ListView lsvItem;
     ListView lsvMenu;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    JSONArray jsonArray = null;
-
+    private Handler handler;
+    ThongTinDangNhap thongTinDangNhap = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,55 +61,57 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         KhoiTao();
         EventThayDoiNam();
         EventMenuClick();
+        DataProvider.arrDanhSachDotKhaoSat.clear();
+        handler = new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listAdapter = new DanhSachAdapter(DanhSachDotKhaoSat.this,R.layout.item_list_danhsach, DataProvider.arrDanhSachDotKhaoSat);
+                lsvItem.setAdapter(listAdapter);
+            }
+        };
         LayDanhSachDotKhaoSat();
-        EventItemClick();
-
     }
-    public void LayDanhSachDotKhaoSat() {
+    public void LayDanhSachDotKhaoSat()
+    {
         new Thread(new Runnable() {
             @Override
-            public void run() {
-
-                jsonArray = LayDuLieu.getJSONObjectFromURL("http://172.29.14.66:9999/api/DotKhaoSat/DocDanhSachDotKhaoSat");
-
-                if(jsonArray!=null)
+            public void run()
+            {
+                jarrDanhSach = ChucNang.getInstance().LayDotKhaoSat();
+                for(int i = 0 ; i < jarrDanhSach.length(); i ++)
                 {
-                    arrItem = new ArrayList<DataListView>();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        try {
-                            JSONArray arr = jsonArray.getJSONObject(i).getJSONArray("DanhSachNhomKhaoSat");
-                            for (int j = 0; j < arr.length(); j++) {
-                                arrItem.add(new DataListView(arr.getJSONObject(j).getString("Ten"),
-                                        arr.getJSONObject(j).getString("Ten"),
-                                        arr.getJSONObject(j).getString("Ten")));
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    try {
+                        JSONObject obj = jarrDanhSach.getJSONObject(i);
+                        String tenDotKhaoSat = obj.getString("TenDotKhaoSat");
+                        String ngayBatDAu = getDate(obj.getLong("NgayBatDau"),"dd/MM/yyyy");
+                        String ngayketThuc = getDate(obj.getLong("NgayKetThuc"),"dd/MM/yyyy");
+                        String tenBenhVien = obj.getJSONObject("DonVi").getString("Ten").toString();
+                        DataProvider.arrDanhSachDotKhaoSat.add(new DataListView(tenDotKhaoSat,ngayBatDAu + " đến " + ngayketThuc,tenBenhVien));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-
-                    listAdapter = new DanhSachAdapter(DanhSachDotKhaoSat.this, R.layout.item_list_danhsach, arrItem);
-                    lsvItem.setAdapter(listAdapter);
                 }
-                else
-                {
-
-                }
-
+                Message msg = handler.obtainMessage();
+                handler.sendMessage(msg);
             }
         }).start();
     }
-    //Khởi tạo MENU item
     public void KhoiTaoMenu() {
         arrMenu = new ArrayList<ItemMenu>();
         arrMenu.add(new ItemMenu(1, R.drawable.menuhome, "Trang chủ"));
-        arrMenu.add(new ItemMenu(2, R.drawable.icon_accountt, "Tài khoản"));
-        arrMenu.add(new ItemMenu(3, R.drawable.menuout, "Đăng xuất"));
+        arrMenu.add(new ItemMenu(2, R.drawable.thongke, "Thống kê"));
+        arrMenu.add(new ItemMenu(3, R.drawable.icon_accountt, "Tài khoản"));
+        arrMenu.add(new ItemMenu(4, R.drawable.menuout, "Đăng xuất"));
         menuAdapter = new MenuAdapter(DanhSachDotKhaoSat.this, R.layout.item_list_menu, arrMenu);
         lsvMenu.setAdapter(menuAdapter);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("key");
+        thongTinDangNhap = (ThongTinDangNhap) bundle.getSerializable("thongtin");
+        txtMenuNameBV.setText(thongTinDangNhap.getDonVi());
+        txtMenuName.setText(thongTinDangNhap.getHoten());
     }
-
     public void EventMenuClick() {
         lsvMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -110,14 +122,21 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     }
-                    case 2: {
-                        //Click tài khoản
-                        drawerLayout.closeDrawers();
-                        Intent intent = new Intent(DanhSachDotKhaoSat.this, ThongTinChiTietTaiKhoan.class);
-                        startActivity(intent);
+                    case 2 :
+                    {
                         break;
                     }
                     case 3: {
+                        //Click tài khoản
+                        drawerLayout.closeDrawers();
+                        Intent intent = new Intent(DanhSachDotKhaoSat.this, ThongTinChiTietTaiKhoan.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("thongtin",thongTinDangNhap);
+                        intent.putExtra("key",bundle);
+                        startActivity(intent);
+                        break;
+                    }
+                    case 4: {
                         finish();
                         break;
                     }
@@ -125,7 +144,6 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public void onBackPressed()
     {
@@ -137,8 +155,9 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-    //Khởi tạo control
     public void KhoiTao() {
+        txtMenuName = (TextView) findViewById(R.id.txtMenuName);
+        txtMenuNameBV = (TextView) findViewById(R.id.txtMenuTenBV);
         btnNext = (ImageButton) findViewById(R.id.btnNext);
         btnPrev = (ImageButton) findViewById(R.id.btnPrev);
         tsvNam = (TextView) findViewById(R.id.txvNam);
@@ -150,12 +169,9 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         setButton();
         KhoiTaoMenu();
     }
-
-    //Nếu không có năm tiếp theo thì ân nút next
     public void setNam() {
         tsvNam.setText(String.valueOf(YearSystem));
     }
-
     public void setButton() {
         if (isNextYear(tsvNam)) {
             btnNext.setVisibility(View.VISIBLE);
@@ -163,7 +179,6 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             btnNext.setVisibility(View.INVISIBLE);
         }
     }
-
     public void EventThayDoiNam() {
         //Click next
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -187,15 +202,12 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             }
         });
     }
-
     public boolean isNextYear(TextView textView) {
         if (Integer.valueOf(textView.getText().toString()) + 1 > Calendar.getInstance().get(Calendar.YEAR)) {
             return false;
         }
         return true;
     }
-
-    //Gọi fragment
     public void callFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -203,16 +215,10 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-    public void EventItemClick()
+    public static String getDate(long milliSeconds, String dateFormat)
     {
-        lsvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                //Item Click
-            }
-        });
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);return formatter.format(calendar.getTime());
     }
-
 }

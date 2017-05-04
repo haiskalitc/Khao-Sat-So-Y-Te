@@ -1,32 +1,59 @@
 package com.example.cscom_pc.phanmemkhaosat;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import Model.DataProvider;
+import Model.TaiKhoan;
+import Model.ThongTinDangNhap;
 
 // MÀN HÌNH ĐĂNG NHẬP
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity
+{
+    public int  delay = 0 ;
+    JSONObject taiKhoan  = null;
     EditText txtTaiKhoan ;
     EditText txtMatKhau;
     Button btnDangNhap;
+    private Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         KhoiTaoControl();
-        DangNhapClick();
-    }
+        DataProvider.arrTaiKhoan.clear();
+        handler = new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                ValidateDangNhap();
+            }
 
+        };
+        btnDangNhap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                DangNhapClick();
+            }
+        });
+    }
     // Khởi tạo control
     public void KhoiTaoControl()
     {
@@ -34,49 +61,63 @@ public class MainActivity extends AppCompatActivity {
         txtMatKhau = (EditText) findViewById(R.id.txtMatKhau);
         btnDangNhap = (Button) findViewById(R.id.btnDangNhap);
     }
+    public void ValidateDangNhap()
+    {
+        if(taiKhoan==null)
+        {
+            Toast.makeText(MainActivity.this, "Tài khoản mật khẩu không chính xác !! ", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            try {
+                Intent intent = new Intent(MainActivity.this,DanhSachDotKhaoSat.class);
+                ThongTinDangNhap thongTinDangNhap = new ThongTinDangNhap(taiKhoan.getString("Ten").toString(),
+                        taiKhoan.getString("Email").toString(),
+                        taiKhoan.getString("DienThoai").toString(),
+                        taiKhoan.getJSONObject("DonVi").getString("Ten"));
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("thongtin",thongTinDangNhap);
+                intent.putExtra("key",bundle);
+                startActivity(intent);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     //-----------------------------------
     // Click đăng nhập
     public void DangNhapClick()
     {
-        btnDangNhap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                if(txtTaiKhoan.length()==0)
-                {
-                    txtTaiKhoan.setError("Không thể trống !!!",getResources().getDrawable(R.drawable.eror));
-                }
-                if(txtMatKhau.length()==0)
-                {
-                    txtTaiKhoan.setError("Không thể trống !!!",getResources().getDrawable(R.drawable.eror));
-
-                }
-                if (txtTaiKhoan.length()!=0 && txtMatKhau.length()!=0)
-                {
-                    if (KiemTraDangNhap(txtTaiKhoan.getText().toString(), txtMatKhau.getText().toString())) {
-                        Intent intent = new Intent(MainActivity.this, DanhSachDotKhaoSat.class);
-                        startActivity(intent);
-                    }
-                }
-            }
-        });
-    }
-    //--------------------------------------
-    //Kiểm tra đang nhập
-    public boolean KiemTraDangNhap(String taiKhoan,String matKhau)
-    {
-        if(taiKhoan.equals("admin")&&matKhau.equals("123"))
+        if (checkInternetConnection() == true)
         {
-            //Đăng nhập thành công
-            return true;
+            if (txtTaiKhoan.getText().toString().length() == 0) {
+                txtTaiKhoan.setError("Không thể trống !!!", getResources().getDrawable(R.drawable.eror));
+            }
+            if (txtMatKhau.getText().toString().length() == 0) {
+                txtTaiKhoan.setError("Không thể trống !!!", getResources().getDrawable(R.drawable.eror));
+
+            }
+            if (txtTaiKhoan.getText().toString().length() != 0 && txtMatKhau.getText().toString().length() != 0)
+            {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        taiKhoan = ChucNang.getInstance().DangNhap(txtTaiKhoan,txtMatKhau);
+                        DataProvider.arrTaiKhoan.add(new TaiKhoan(txtTaiKhoan.getText().toString(),txtMatKhau.getText().toString()));
+                        Message msg = handler.obtainMessage();
+                        msg.obj = taiKhoan;
+                        handler.sendMessage(msg);
+
+                    }
+                }).start();
+            }
         }
         else
         {
-            //Đăng nhập thất bại
-            return  false;
+            Toast.makeText(MainActivity.this, "Lỗi mạng ! Vui lòng kiểm tra lại.", Toast.LENGTH_LONG).show();
         }
     }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -86,5 +127,26 @@ public class MainActivity extends AppCompatActivity {
             txtMatKhau.setText("");
             txtTaiKhoan.setFocusable(true);
         }
+    }
+    private boolean checkInternetConnection() {
+
+        ConnectivityManager connManager =
+                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+
+        NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
+
+        if (networkInfo == null) {
+            return false;
+        }
+
+        if (!networkInfo.isConnected()) {
+            return false;
+        }
+
+        if (!networkInfo.isAvailable()) {
+            return false;
+        }
+        return true;
     }
 }

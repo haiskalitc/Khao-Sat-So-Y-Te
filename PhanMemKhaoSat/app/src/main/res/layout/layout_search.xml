@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_marginRight="60dp"
+        android:layout_marginRight="87dp"
         android:background="@android:color/white"
         >
         <ImageButton
@@ -30,14 +30,14 @@
             android:background="@android:color/white"
             />
     </LinearLayout>
-    <TextView
-        android:layout_marginRight="10dp"
+    <Button
+        android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
+        android:background="@null"
         android:layout_height="match_parent"
         android:text="Cancel"
         android:id="@+id/txvCancel"
         android:textColor="@android:color/white"
-        android:gravity="center_vertical"
         android:layout_alignParentRight="true"
         />
 </RelativeLayout>
