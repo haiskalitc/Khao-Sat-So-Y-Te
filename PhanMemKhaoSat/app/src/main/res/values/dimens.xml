@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="dangnhap" >300dp</dimen>
+    <dimen name="nav">350dp</dimen>
+    <integer name="strans">200</integer>
 </resources>

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
+import com.example.cscom_pc.phanmemkhaosat.DanhSachDotKhaoSat;
 import com.example.cscom_pc.phanmemkhaosat.R;
 
 /**
@@ -37,7 +38,9 @@ public class ThongTinDanhSach extends Fragment
         });
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                ((DanhSachDotKhaoSat)getActivity()).OpenNavigation();
             }
         });
     }

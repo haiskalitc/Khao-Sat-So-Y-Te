@@ -16,6 +16,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+
 import Model.DataProvider;
 import Model.TaiKhoan;
 import Model.ThongTinDangNhap;
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity
     {
         if(taiKhoan==null)
         {
-            Toast.makeText(MainActivity.this, "Tài khoản mật khẩu không chính xác !! ", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Tài khoản mật khẩu không chính xác !! ", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -88,16 +92,13 @@ public class MainActivity extends AppCompatActivity
     // Click đăng nhập
     public void DangNhapClick()
     {
-        if (checkInternetConnection() == true)
-        {
-            if (txtTaiKhoan.getText().toString().length() == 0) {
-                txtTaiKhoan.setError("Không thể trống !!!", getResources().getDrawable(R.drawable.eror));
+        if (txtTaiKhoan.getText().toString().length() == 0) {
+            txtTaiKhoan.setError("Không thể trống !!!", getResources().getDrawable(R.drawable.eror));
+        }
+        if (txtMatKhau.getText().toString().length() == 0) {
+            txtTaiKhoan.setError("Không thể trống !!!", getResources().getDrawable(R.drawable.eror));
             }
-            if (txtMatKhau.getText().toString().length() == 0) {
-                txtTaiKhoan.setError("Không thể trống !!!", getResources().getDrawable(R.drawable.eror));
-
-            }
-            if (txtTaiKhoan.getText().toString().length() != 0 && txtMatKhau.getText().toString().length() != 0)
+        if (txtTaiKhoan.getText().toString().length() != 0 && txtMatKhau.getText().toString().length() != 0)
             {
                 new Thread(new Runnable() {
                     @Override
@@ -106,17 +107,10 @@ public class MainActivity extends AppCompatActivity
                         taiKhoan = ChucNang.getInstance().DangNhap(txtTaiKhoan,txtMatKhau);
                         DataProvider.arrTaiKhoan.add(new TaiKhoan(txtTaiKhoan.getText().toString(),txtMatKhau.getText().toString()));
                         Message msg = handler.obtainMessage();
-                        msg.obj = taiKhoan;
                         handler.sendMessage(msg);
-
                     }
                 }).start();
             }
-        }
-        else
-        {
-            Toast.makeText(MainActivity.this, "Lỗi mạng ! Vui lòng kiểm tra lại.", Toast.LENGTH_LONG).show();
-        }
     }
     @Override
     protected void onResume() {
@@ -127,26 +121,5 @@ public class MainActivity extends AppCompatActivity
             txtMatKhau.setText("");
             txtTaiKhoan.setFocusable(true);
         }
-    }
-    private boolean checkInternetConnection() {
-
-        ConnectivityManager connManager =
-                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-
-        NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
-
-        if (networkInfo == null) {
-            return false;
-        }
-
-        if (!networkInfo.isConnected()) {
-            return false;
-        }
-
-        if (!networkInfo.isAvailable()) {
-            return false;
-        }
-        return true;
     }
 }

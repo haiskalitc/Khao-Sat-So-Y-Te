@@ -9,12 +9,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +58,8 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
     NavigationView navigationView;
     private Handler handler;
     ThongTinDangNhap thongTinDangNhap = null;
+    LinearLayout linearLayout ;
+    ActionBarDrawerToggle drawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +69,7 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         EventThayDoiNam();
         EventMenuClick();
         DataProvider.arrDanhSachDotKhaoSat.clear();
+
         handler = new Handler()
         {
             @Override
@@ -72,7 +80,44 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             }
         };
         LayDanhSachDotKhaoSat();
+        ItemClick();
+        drawerToggle = new ActionBarDrawerToggle(DanhSachDotKhaoSat.this,drawerLayout,R.string.app_name,R.string.app_name)
+        {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                supportInvalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                supportInvalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset)
+            {
+                super.onDrawerSlide(drawerView, slideOffset);
+                linearLayout.setTranslationX(slideOffset*(linearLayout.getWidth()-getResources().getInteger(R.integer.strans)));
+                drawerLayout.bringChildToFront(drawerView);
+                drawerLayout.requestLayout();
+            }
+        };
+        drawerLayout.setDrawerListener(drawerToggle);
     }
+    public void ItemClick()
+    {
+        lsvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+            }
+        });
+    }
+    public void OpenNavigation()
+    {
+        drawerLayout.openDrawer(Gravity.LEFT);
+    }
+
     public void LayDanhSachDotKhaoSat()
     {
         new Thread(new Runnable() {
@@ -165,6 +210,7 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         lsvMenu = (ListView) findViewById(R.id.lsvMenu);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         navigationView = (NavigationView) findViewById(R.id.nvView);
+        linearLayout = (LinearLayout) findViewById(R.id.baonien);
         setNam();
         setButton();
         KhoiTaoMenu();
