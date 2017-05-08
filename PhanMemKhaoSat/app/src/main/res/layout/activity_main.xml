@@ -58,7 +58,7 @@
                         android:paddingRight="32dp"
                         android:layout_marginTop="32dp"
                         android:layout_gravity="center"
-                        android:background="@android:color/white"
+                        android:background="@drawable/dangnhapbg"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_vertical_margin"
                         android:layout_width="@dimen/dangnhap"
@@ -70,8 +70,10 @@
                             android:layout_height="64dp"
                             android:id="@+id/txtTenDangNhap"
                             android:hint="Nhập tài khoản"
-                            android:drawableLeft="@drawable/icon_accountt"
+                            android:drawableLeft="@drawable/iconaccount"
                             android:drawablePadding="16dp"
+                            android:textCursorDrawable="@android:color/holo_blue_light"
+
                             >
                         </EditText>
 
@@ -81,8 +83,10 @@
                             android:id="@+id/txtMatKhau"
                             android:password="true"
                             android:hint="Nhập mật khẩu"
-                            android:drawableLeft="@drawable/icon_pas"
-                            android:drawablePadding="16dp"/>
+                            android:drawableLeft="@drawable/iconpasss"
+                            android:drawablePadding="16dp"
+                            android:textCursorDrawable="@android:color/holo_blue_light"
+                            />
                         <Button
                             android:id="@+id/btnDangNhap"
                             android:layout_marginTop="8dp"

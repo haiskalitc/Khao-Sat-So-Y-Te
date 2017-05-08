@@ -25,7 +25,7 @@ import java.net.URL;
  */
 
 public class LayDotKhaoSat {
-    public static JSONArray getJSONObjectFromURL(String urlString) {
+    public static JSONArray getJSONObjectFromURL(String urlString,long yearBatDau,long yearKetThuc) {
         try {
             HttpURLConnection urlConnection = null;
 
@@ -62,8 +62,8 @@ public class LayDotKhaoSat {
             JSONObject jsonObject = new JSONObject();
             // {"MaDonVi": "588029e323c9091574dd6471", "TuNgay": 0, "DenNgay": 1491358040}
             jsonObject.put("MaDonVi","588029e323c9091574dd6471");
-            jsonObject.put("DenNgay",1491358040);
-            jsonObject.put("TuNgay",0);
+            jsonObject.put("DenNgay",yearKetThuc);
+            jsonObject.put("TuNgay",yearBatDau);
             bufferedWriter.write(jsonObject.toString());
             bufferedWriter.flush();
             bufferedWriter.close();

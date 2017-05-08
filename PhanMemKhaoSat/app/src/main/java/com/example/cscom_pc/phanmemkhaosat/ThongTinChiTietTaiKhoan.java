@@ -11,12 +11,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import Model.ThongTinDangNhap;
 
 public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
 
+    RelativeLayout reDoiMatKhau;
     EditText txtTaiKhoan ;
     EditText txtSoDienThoai;
     EditText txtEmail;
@@ -32,7 +34,8 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
         KhoiTao();
         btnDoiMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 DoiMatKhau();
             }
         });
@@ -54,6 +57,7 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
     }
     public void KhoiTao()
     {
+        reDoiMatKhau = (RelativeLayout) findViewById(R.id.reDoiMatKhau);
         txtTaiKhoan = (EditText) findViewById(R.id.txtTenNguoiDung);
         txtSoDienThoai = (EditText) findViewById(R.id.txtSoDienThoaiNguoiDung);
         txtEmail = (EditText) findViewById(R.id.txtEmailNguoiDung);
@@ -70,38 +74,38 @@ public class ThongTinChiTietTaiKhoan extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed()
-    {
-        if(DachSachFragment.getInstance().thongTinTaiKhoan.isVisible())
-        {
+    public void onBackPressed() {
+        if (DachSachFragment.getInstance().thongTinTaiKhoan.isVisible()) {
             finish();
-        }
-        else
-        {
+        } else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(ThongTinChiTietTaiKhoan.this);
             dialog.setTitle("Thông báo!!");
             dialog.setMessage("Bạn chưa lưu thay đổi ?");
             dialog.setPositiveButton("Quay Lại", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
+                public void onClick(DialogInterface dialog, int which) {
                     //Quay lại
                     dialog.cancel();
                 }
             });
             dialog.setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
-                  finish();
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
                 }
             });
             dialog.show();
         }
     }
-
     public void SetEdit(boolean fa)
     {
+        if(fa) {
+            reDoiMatKhau.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            reDoiMatKhau.setVisibility(View.VISIBLE);
+        }
         txtTaiKhoan.setEnabled(fa);
         txtEmail.setEnabled(fa);
         txtDonVi.setEnabled(fa);

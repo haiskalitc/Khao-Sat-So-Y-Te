@@ -4,12 +4,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
 import com.example.cscom_pc.phanmemkhaosat.R;
 import com.example.cscom_pc.phanmemkhaosat.ThongTinChiTietTaiKhoan;
 
@@ -71,7 +73,7 @@ public class EditTaiKhoan extends Fragment
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                getActivity().finish();
+                replaceFragment(DachSachFragment.getInstance().thongTinTaiKhoan);
             }
         });
         dialog.show();
@@ -87,16 +89,23 @@ public class EditTaiKhoan extends Fragment
             public void onClick(DialogInterface dialog, int which)
             {
                 //Quay lại
-                getActivity().finish();
+                replaceFragment(DachSachFragment.getInstance().thongTinTaiKhoan);
             }
         });
         dialog.setNegativeButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                getActivity().finish();
+                replaceFragment(DachSachFragment.getInstance().thongTinTaiKhoan);
             }
         });
         dialog.show();
+    }
+    public void replaceFragment(Fragment someFragment)
+    {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.frmThongTinTaiKhoan, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

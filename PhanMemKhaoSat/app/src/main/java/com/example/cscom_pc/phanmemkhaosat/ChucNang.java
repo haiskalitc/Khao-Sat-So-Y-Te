@@ -32,8 +32,8 @@ public class ChucNang
                 txtTaiKhoan.getText().toString()
                 ,txtMauKhau.getText().toString());
     }
-    synchronized public JSONArray LayDotKhaoSat()
+    synchronized public JSONArray LayDotKhaoSat(long nambd,long namkt)
     {
-        return LayDotKhaoSat.getJSONObjectFromURL("http://172.29.14.66:9999/api/DotKhaoSat/DocDanhSachDotKhaoSatTheoNgay");
+        return LayDotKhaoSat.getJSONObjectFromURL("http://172.29.14.66:9999/api/DotKhaoSat/DocDanhSachDotKhaoSatTheoNgay",nambd,namkt);
     }
 }

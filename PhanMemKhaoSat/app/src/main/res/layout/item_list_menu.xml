@@ -2,21 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:paddingLeft="24dp"
-    android:background="@drawable/shadow">
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/menuhome"
-        android:layout_gravity="center"
-        android:id="@+id/hinhMenu"
-        />
-    <TextView
-        android:layout_gravity="center"
-        android:layout_marginLeft="24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Trang Chủ"
-        android:id="@+id/txtTenMenu"/>
+    >
+    <RelativeLayout
+        android:layout_width="56dp"
+        android:layout_height="56dp">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/menuhome"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/hinhMenu"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <TextView
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trang Chủ"
+            android:layout_centerVertical="true"
+            android:id="@+id/txtTenMenu"/>
+    </RelativeLayout>
 </LinearLayout>

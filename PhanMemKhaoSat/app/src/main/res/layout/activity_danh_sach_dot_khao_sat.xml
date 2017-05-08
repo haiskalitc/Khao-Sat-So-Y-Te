@@ -9,37 +9,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:clickable="false"
-        android:descendantFocusability="blocksDescendants"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         >
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:id="@+id/tittle"
-            android:clickable="false"
-            android:descendantFocusability="blocksDescendants"
-            android:focusable="false"
-            android:focusableInTouchMode="false">
+            android:id="@+id/tittle">
         </FrameLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:background="#E0F3F7"
-            android:clickable="false"
-            android:descendantFocusability="blocksDescendants"
-            android:focusable="false"
-            android:focusableInTouchMode="false">
+            android:background="#E0F3F7">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_centerInParent="true"
-                android:clickable="false"
-                android:descendantFocusability="blocksDescendants"
-                android:focusable="false"
-                android:focusableInTouchMode="false">
+                android:layout_centerInParent="true">
                 <ImageButton
                     android:background="@null"
                     android:layout_width="32dp"
@@ -81,9 +65,11 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/nvView"
         android:layout_width="@dimen/nav"
+        android:maxWidth="@dimen/nav"
+        android:layout_marginRight="56dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/white">
+        android:background="@drawable/shadow"        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

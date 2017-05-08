@@ -1,6 +1,8 @@
 package com.example.cscom_pc.phanmemkhaosat;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,6 +31,8 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import Adapter.DanhSachAdapter;
 import Adapter.MenuAdapter;
@@ -38,12 +42,13 @@ import Model.DataProvider;
 import Model.ItemMenu;
 import Model.ThongTinDangNhap;
 
+import static android.R.attr.typeface;
+
 
 public class DanhSachDotKhaoSat extends AppCompatActivity {
     ArrayList<ItemMenu> arrMenu;
     MenuAdapter menuAdapter;
     //-------------------
-    JSONArray jarrDanhSach = null;
     DanhSachAdapter listAdapter;
     //-------------------
     public static int YearSystem = Calendar.getInstance().get(Calendar.YEAR);
@@ -75,8 +80,14 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                listAdapter = new DanhSachAdapter(DanhSachDotKhaoSat.this,R.layout.item_list_danhsach, DataProvider.arrDanhSachDotKhaoSat);
-                lsvItem.setAdapter(listAdapter);
+                if(listAdapter == null) {
+                    listAdapter = new DanhSachAdapter(DanhSachDotKhaoSat.this, R.layout.item_list_danhsach, DataProvider.arrDanhSachDotKhaoSat);
+                    lsvItem.setAdapter(listAdapter);
+                }
+                else
+                {
+                    listAdapter.notifyDataSetChanged();
+                }
             }
         };
         LayDanhSachDotKhaoSat();
@@ -124,16 +135,18 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
             @Override
             public void run()
             {
-                jarrDanhSach = ChucNang.getInstance().LayDotKhaoSat();
+
+                 JSONArray jarrDanhSach = ChucNang.getInstance().LayDotKhaoSat(getMili(tsvNam.getText().toString(),1,1),
+                         getMili(tsvNam.getText().toString(),30,12));
                 for(int i = 0 ; i < jarrDanhSach.length(); i ++)
                 {
                     try {
                         JSONObject obj = jarrDanhSach.getJSONObject(i);
                         String tenDotKhaoSat = obj.getString("TenDotKhaoSat");
                         String ngayBatDAu = getDate(obj.getLong("NgayBatDau"),"dd/MM/yyyy");
-                        String ngayketThuc = getDate(obj.getLong("NgayKetThuc"),"dd/MM/yyyy");
+                        String ngayKetThuc = getDate(obj.getLong("NgayKetThuc"),"dd/MM/yyyy");
                         String tenBenhVien = obj.getJSONObject("DonVi").getString("Ten").toString();
-                        DataProvider.arrDanhSachDotKhaoSat.add(new DataListView(tenDotKhaoSat,ngayBatDAu + " đến " + ngayketThuc,tenBenhVien));
+                        DataProvider.arrDanhSachDotKhaoSat.add(new DataListView(tenDotKhaoSat,ngayBatDAu + " đến "+ngayKetThuc,tenBenhVien));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -230,10 +243,13 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isNextYear(tsvNam)) {
+                if (isNextYear(tsvNam))
+                {
                     YearSystem++;
                     setNam();
                     setButton();
+                    DataProvider.arrDanhSachDotKhaoSat.clear();
+                    LayDanhSachDotKhaoSat();
                 }
             }
         });
@@ -245,6 +261,8 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
                 YearSystem--;
                 setNam();
                 setButton();
+                DataProvider.arrDanhSachDotKhaoSat.clear();
+                LayDanhSachDotKhaoSat();
             }
         });
     }
@@ -266,5 +284,13 @@ public class DanhSachDotKhaoSat extends AppCompatActivity {
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(milliSeconds);return formatter.format(calendar.getTime());
+    }
+    public static  long getMili(String nam,int ngay , int thang)
+    {
+        int mi = Integer.valueOf(nam);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(mi,thang,ngay);
+        Date date = new Date();
+        return calendar.getTimeInMillis()/ 1000;
     }
 }

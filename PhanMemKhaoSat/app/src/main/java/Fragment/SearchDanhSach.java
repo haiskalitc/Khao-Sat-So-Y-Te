@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
@@ -21,16 +22,14 @@ import com.example.cscom_pc.phanmemkhaosat.R;
 
 public class SearchDanhSach extends Fragment
 {
-    public ImageButton btnSearchR ;
-    public EditText txtTiemKiem;
+    public android.support.v7.widget.SearchView txtTiemKiem;
     public Button btnCancel;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_search,container,false);
-        txtTiemKiem = (EditText) view.findViewById(R.id.txtTimKiem);
+        txtTiemKiem = (android.support.v7.widget.SearchView) view.findViewById(R.id.txtTimKiem);
         btnCancel = (Button) view.findViewById(R.id.txvCancel);
-        btnSearchR = (ImageButton) view.findViewById(R.id.btnSearchR);
         return  view;
     }
     public  void Event()
@@ -44,12 +43,6 @@ public class SearchDanhSach extends Fragment
         });
 
         //Tìm kiếm
-        btnSearchR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
     public void replaceFragment(Fragment someFragment)
     {

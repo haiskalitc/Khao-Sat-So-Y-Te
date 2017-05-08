@@ -169,17 +169,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"/>
+
                 <EditText
-                    android:editable="false"
+                    android:id="@+id/txtVaiTroNguoiDung"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtVaiTroNguoiDung"
-                    android:hint="(Trống)"
-                    />
+                    android:hint="(Trống)" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 <RelativeLayout
+    android:id="@+id/reDoiMatKhau"
     android:background="#ECECEC"
     android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
