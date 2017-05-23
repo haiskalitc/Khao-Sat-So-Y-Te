@@ -6,13 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.cscom_pc.phanmemkhaosat.R;
+import com.syt.phanmemkhaosat.R;
 
 import java.util.List;
 
 import Model.DataListView;
+import Model.DataProvider;
 
 /**
  * Created by CSCOM-PC on 4/25/2017.
@@ -32,7 +36,7 @@ public class DanhSachAdapter extends ArrayAdapter<DataListView>
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = this.context.getLayoutInflater();
         View dataRowView = layoutInflater.inflate(this.resource,null);
         TextView txtTenDotKhaoSat = (TextView) dataRowView.findViewById(R.id.txtTenDotKhaoSat);
@@ -41,6 +45,14 @@ public class DanhSachAdapter extends ArrayAdapter<DataListView>
         txtTenDotKhaoSat.setText(this.objects.get(position).getTen());
         txtNgayDen.setText(this.objects.get(position).getNgay());
         txtTenBenhVien.setText(this.objects.get(position).getTenbv());
+        ImageButton btnNextItem = (ImageButton) dataRowView.findViewById(R.id.btnItemNext);
+        btnNextItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(),DataProvider.arrDanhSachDotKhaoSat.get(position).getTen(),Toast.LENGTH_SHORT).show();
+            }
+        });
         return  dataRowView;
     }
 }

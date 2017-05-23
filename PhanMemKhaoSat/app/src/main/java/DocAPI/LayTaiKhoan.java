@@ -19,7 +19,7 @@ import java.net.URL;
 
 public class LayTaiKhoan
 {
-    public static JSONObject getJSONObjectFromURL(String urlString,String TaiKhoan,String MatKhau) {
+    public static JSONObject getJSONObjectFromURL(String urlString,String TaiKhoan,String MatKhau,String maThietBi,String tenThietBi,String tokenID) {
         try {
             HttpURLConnection urlConnection = null;
 

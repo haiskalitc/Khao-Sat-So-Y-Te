@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
-import com.example.cscom_pc.phanmemkhaosat.R;
-import com.example.cscom_pc.phanmemkhaosat.ThongTinChiTietTaiKhoan;
+import com.syt.phanmemkhaosat.DachSachFragment;
+import com.syt.phanmemkhaosat.R;
+import com.syt.phanmemkhaosat.ThongTinChiTietTaiKhoan;
 
 /**
  * Created by CSCOM-PC on 4/24/2017.
@@ -96,6 +96,7 @@ public class EditTaiKhoan extends Fragment
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+                ((ThongTinChiTietTaiKhoan)getActivity()).ThayDoiThongTin();
                 replaceFragment(DachSachFragment.getInstance().thongTinTaiKhoan);
             }
         });

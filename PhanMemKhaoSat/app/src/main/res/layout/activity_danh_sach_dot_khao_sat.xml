@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerlayout">
+    android:id="@+id/drawerlayout"
+    >
     <LinearLayout
         android:id="@+id/baonien"
         android:layout_width="match_parent"
@@ -53,12 +54,13 @@
         </RelativeLayout>
         <!--List-->
         <ListView
+            android:drawingCacheQuality="high"
+            android:layout_marginLeft="30dp"
             android:id="@+id/lsvItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
+            android:divider="#00000000"
+            android:dividerHeight="0dp"
             >
         </ListView>
     </LinearLayout>
@@ -69,12 +71,15 @@
         android:layout_marginRight="56dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@drawable/shadow"        >
+        android:background="@color/gray_btn_bg_color"
+
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/shadow">
+            android:background="@color/gray_btn_bg_color"
+            >
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -82,8 +87,9 @@
             </FrameLayout>
             <!--MENU Navigation-->
             <ListView
+                android:background="@color/button_text_color"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/lsvMenu"
                 >
             </ListView>

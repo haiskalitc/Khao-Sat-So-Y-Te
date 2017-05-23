@@ -4,6 +4,6 @@
     <dimen name="activity_vertical_margin">200dp</dimen>
     <dimen name="dangnhap" >350dp</dimen>
     <dimen name="nav">320dp</dimen>
-    <integer name="strans">920</integer>
+    <integer name="strans">850</integer>
 
 </resources>

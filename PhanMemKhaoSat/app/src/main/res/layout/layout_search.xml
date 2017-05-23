@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#32AFC8"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="8dp"
     android:paddingLeft="15dp">
-    <RelativeLayout
+
+    <android.support.v7.widget.SearchView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/txtTimKiem"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/white"
+        app:showAsAction="always|collapseActionView"
         android:layout_marginRight="80dp"
-        >
-        <android.support.v7.widget.SearchView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/txtTimKiem"
-            android:layout_alignParentLeft="true"
-            android:background="@android:color/white"
-            android:focusableInTouchMode="true"
-            android:focusable="true"
-            />
-    </RelativeLayout>
+        />
     <Button
         android:layout_marginRight="5dp"
         android:layout_width="70dp"

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:background="@drawable/shadow"
+    android:background="@color/gray_btn_bg_color"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <ImageView
         android:layout_width="120dp"
@@ -17,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nguyễn Minh Hải"
-        android:textSize="14pt"
+        android:textSize="12pt"
         android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
@@ -28,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bệnh viện thống nhất nhất nhất nhất nhất nhất nhất"
-        android:textSize="8pt"
+        android:textSize="6pt"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="30dp"

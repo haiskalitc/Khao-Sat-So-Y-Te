@@ -66,7 +66,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="(Trống)"
-                        android:id="@+id/txtMatKhauCu" />
+                        android:id="@+id/txtMatKhauCu"
+                        android:password="true"/>
                 </LinearLayout>
             </RelativeLayout>
             <RelativeLayout
@@ -92,7 +93,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="(Trống)"
-                        android:id="@+id/txtMatKhauMoi"/>
+                        android:id="@+id/txtMatKhauMoi"
+                        android:password="true"/>
                 </LinearLayout>
             </RelativeLayout>
             <RelativeLayout
@@ -119,6 +121,7 @@
                         android:layout_height="wrap_content"
                         android:hint="(Trống)"
                         android:id="@+id/txtXacNhanMatKhauMoi"
+                        android:password="true"
                         />
                 </LinearLayout>
             </RelativeLayout>

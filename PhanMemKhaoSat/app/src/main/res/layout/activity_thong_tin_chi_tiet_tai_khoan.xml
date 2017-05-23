@@ -142,6 +142,8 @@
                     android:layout_height="wrap_content"
                     android:text="Phòng Marketing bẹnh viện 112"
                     android:id="@+id/txtDonViNguoiDugn"
+                    android:editable="false"
+                    android:enabled="false"
                     />
             </LinearLayout>
         </RelativeLayout>

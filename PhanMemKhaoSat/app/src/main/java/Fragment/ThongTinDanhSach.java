@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
-import com.example.cscom_pc.phanmemkhaosat.DanhSachDotKhaoSat;
-import com.example.cscom_pc.phanmemkhaosat.R;
+import com.syt.phanmemkhaosat.DachSachFragment;
+import com.syt.phanmemkhaosat.DanhSachDotKhaoSat;
+import com.syt.phanmemkhaosat.R;
 
 /**
  * Created by CSCOM-PC on 4/24/2017.

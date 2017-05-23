@@ -1,5 +1,6 @@
 package Fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +14,8 @@ import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.example.cscom_pc.phanmemkhaosat.DachSachFragment;
-import com.example.cscom_pc.phanmemkhaosat.R;
+import com.syt.phanmemkhaosat.DachSachFragment;
+import com.syt.phanmemkhaosat.R;
 
 /**
  * Created by CSCOM-PC on 4/24/2017.
@@ -30,6 +31,9 @@ public class SearchDanhSach extends Fragment
         View view = inflater.inflate(R.layout.layout_search,container,false);
         txtTiemKiem = (android.support.v7.widget.SearchView) view.findViewById(R.id.txtTimKiem);
         btnCancel = (Button) view.findViewById(R.id.txvCancel);
+        txtTiemKiem.setQueryHint("Tìm kiếm");
+        txtTiemKiem.setBackgroundColor(Color.WHITE);
+        txtTiemKiem.setIconified(false);
         return  view;
     }
     public  void Event()

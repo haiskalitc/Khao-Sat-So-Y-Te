@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.cscom_pc.phanmemkhaosat.R;
+import com.syt.phanmemkhaosat.R;
 
 import java.util.List;
 
